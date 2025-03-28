@@ -200,18 +200,23 @@ onMounted(() => {
     <Head title="Dashboard" />
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="p-6 bg-gray-50">
-            <h2 class="text-2xl font-bold mb-4">Product Management</h2>
+            <h2 class="text-2xl font-bold mb-4 text-center">Product Management</h2>
+            
+            <br />
+
+            <h4 class="text-2xl font-bold mb-4">Add Product</h4>            
             <div class="flex gap-4 mb-6">
                 <input v-model="newProduct.name" placeholder="Product Name" class="border rounded-lg p-2 shadow-md w-full" />
                 <input v-model="newProduct.price" placeholder="Price" class="border rounded-lg p-2 shadow-md w-full" />
-                <input v-model="newProduct.stock_quantity" placeholder="Stock" class="border rounded-lg p-2 shadow-md w-full" />
+                <input v-model="newProduct.stock_quantity" placeholder="Quantity" class="border rounded-lg p-2 shadow-md w-full" />
                 <input v-model="newProduct.description" placeholder="Description" class="border rounded-lg p-2 shadow-md w-full" />
                 <button @click="addProduct" class="px-4 py-2 bg-green-600 text-white rounded-lg shadow-md hover:bg-green-700 transition">Add Product</button>
             </div>
 
+<hr />
 <!-- Display Cart Items -->
 <div class="mt-6">
-    <h3 class="text-xl font-bold mb-3">Shopping Cart</h3>
+    <h3 class="text-xl font-bold mb-3">Shopping Cart Details</h3>
     <div v-if="cart.length > 0" class="bg-white p-4 rounded-lg shadow-md">
         <div v-for="item in cart" :key="item.id" class="flex justify-between items-center border-b py-2">
             <div>
@@ -228,6 +233,10 @@ onMounted(() => {
     <p v-else-if="cartLoaded" class="text-gray-500">Your cart is empty.</p>
 </div>
             
+            <hr /> <br />
+
+            <h4 class="text-2xl font-bold mb-4">Product List</h4>
+
             <div v-if="editingProduct" class="mt-4 bg-white p-4 rounded-lg shadow-md">
                 <h3 class="text-xl font-semibold">Edit Product</h3>
                 <div class="flex gap-4">
@@ -245,7 +254,6 @@ onMounted(() => {
                     <h4 class="font-bold text-lg">{{ product.name }}</h4>
                     <p>Price: ${{ product.price }}</p>
                     <p>Stock Quantity: {{ product.stock_quantity }}</p>
-                    <p>In Cart Count: {{ cart.filter(item => item.product_id === product.id).length }}</p>
                     <div class="flex justify-between mt-4">
                         <button @click="editProduct(product)" class="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 transition">Edit</button>
                         <button @click="deleteProduct(product.id)" class="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600 transition">Delete</button>
